@@ -1,4 +1,4 @@
-d4d-project
+CS51 Final Project
 ===========
 
 #Installation
