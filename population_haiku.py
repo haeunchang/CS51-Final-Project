@@ -1,5 +1,5 @@
-class population_haiku
-	def __init__(train_graph_mono, train_graph_bi, pop_size):
+class Population_haiku
+	def __init__(self, train_graph_mono, train_graph_bi, pop_size):
     	#spawns initial population based on the given training data
         #pop_size is the size of the population
         #Takes in a random template, populates it with words
