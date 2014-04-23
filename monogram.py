@@ -12,7 +12,7 @@ class Monogram:
         self.occurrences = 0 # counts the number of times word has occurred in the training data
     
     def get_length(self):
-        """Returns the syllable length"
+        """Returns the syllable length"""
         if self.syllables == -1:
             self.syllables = dictionary.syllablecnt(self.word)
         return self.syllables
