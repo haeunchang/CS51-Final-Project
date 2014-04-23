@@ -5,7 +5,7 @@ class Bi_Gram:
         self.phrase = (string1, string2) # the word phrase
         self.occurrences = 0 # counts occurrences
     
-    def update(self,haiku):
+    def update(self, haiku):
         """Increases self.occurrences based on data from haiku."""
         raise NotImplementedError
         

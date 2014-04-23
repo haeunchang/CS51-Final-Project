@@ -4,10 +4,10 @@ class Line_type:
         self.typenum = typenum
         self.typearray = # list.map (fun (a, b) -> a) y
         self.syllablearray = # list.map (fun(a, b) -> b) y
-        self.occurrences # counts the number of occurrences of this line_type
+        self.occurrences = 0 # counts the number of occurrences of this line_type
     
     def update(self,haiku):
         """Increases self_occurrences based on data from haiku."""
-    
+        
 
 

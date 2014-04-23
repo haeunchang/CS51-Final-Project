@@ -1,3 +1,5 @@
+import dictionary
+
 class Monogram:
     """A monogram will store most of the training data that we process. This will include
     the number of times it has occurred, its syllable count, word types, and a dictionary
