@@ -8,6 +8,6 @@ class Line_type:
     
     def update(self,haiku):
         """Increases self_occurrences based on data from haiku."""
-        
+        raise NotImplementedError
 
 

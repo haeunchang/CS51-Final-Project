@@ -10,6 +10,7 @@ class Monogram:
         self.syllables = -1 # syllable length, initialized to -1 indicating it has not been found
         self.wordtype = None # lexical category, bool list if found, initialized to None
         self.occurrences = 0 # counts the number of times word has occurred in the training data
+        self.adj_dict = {} # dictionary from adjacent word to adjancency coefficient
     
     def get_length(self):
         """Returns the syllable length"""
@@ -23,9 +24,12 @@ class Monogram:
             self.wordtype = dictionary.wordtype(self.word)
         return self.wordtype
 
-    def adj_dict(self,word2):
+    def update_adj_dict(self,word2):
         """Returns the adjacency coefficient of (self.word, word2)."""
-        raise NotImplementedError
+        if word2 in self.adj_dict:
+            pass # TODO: replace with how to update the adjancency coefficient!
+        else:
+            pass # TODO: replace with initial value of adjancency coefficient!
     
     def update(self,haiku):
         """Updates self.occurrences and self.adj_dict based on data from haiku."""
