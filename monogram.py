@@ -24,13 +24,18 @@ class Monogram:
             self.wordtype = dictionary.wordtype(self.word)
         return self.wordtype
 
-    def update_adj_dict(self,word2):
+    def update_adj_dict(self,word2,same_line):
         """Returns the adjacency coefficient of (self.word, word2)."""
         if word2 in self.adj_dict:
-            pass # TODO: replace with how to update the adjancency coefficient!
+            if same_line:
+                self.adj_dict = (self.adj_dict[0]+1, self.adj_dict[1])
+            else:
+                self.adj_dict = (self.adj_dict[0], self.adj_dict[1]+1)
         else:
-            pass # TODO: replace with initial value of adjancency coefficient!
-    
+            if same_line: 
+                self.adj_dict = (1, 0)
+            else:
+                self.adj_dict = (0, 1)
     def update(self,haiku):
         """Updates self.occurrences and self.adj_dict based on data from haiku."""
         raise NotImplementedError

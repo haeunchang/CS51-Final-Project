@@ -4,7 +4,7 @@ class Training:
 
     def train_haiku(haiku, monograms, bi-grams, line_types):
         """Takes in a new Haiku as well as three sets: one of Monogram objects, one of Bi-Gram objects,
-        and one of Line_type objects. Updates the Monogram set and the Bi-Gram set, returns None."""
+        and one of Line_type objects. Updates the three sets, returns None."""
 
     def train (haikus, monograms, bi-grams, line_types):
         """Trains the input haikus, updates monograms and bigrams, yields None"""
