@@ -1,6 +1,6 @@
 class Line_Haiku:
-	def __init__(self, y, typenum):
-    	# Takes in a string array (and haiku position) and outputs 
+    def __init__(self, y, typenum):
+        # Takes in a string array (and haiku position) and outputs 
         self.typenum = typenum
 
         self.wordarray = y
