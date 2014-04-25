@@ -4,6 +4,7 @@ import curses
 from curses.ascii import isdigit
 import nltk
 from nltk.corpus import cmudict
+from nltk.corpus import wordnet
  
 d = cmudict.dict() 
 

@@ -6,6 +6,12 @@ class Line_type:
         self.syllablearray = [a[1] for a in abstract_line]
         self.skeleton = (abstract_line, typenum)
         self.occurrences = 0 # counts the number of occurrences of this line_type
+
+    def __eq__(self, other):
+        return self.skeleton == other.skeleton
+
+    def __hash__(self):
+        return hash(self.skeleton)
     
     def update(self):
         """Increases self_occurrences based on data from haiku."""
