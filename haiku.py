@@ -2,7 +2,7 @@ from line_haiku import Line_Haiku
 
 class Haiku:
     def __init__(self, line1, line2, line3, raw_lines = False):
-        if raw_line:
+        if raw_lines:
             line1 = Line_Haiku(line1, 1)
             line2 = Line_Haiku(line2, 2)
             line3 = Line_Haiku(line3, 3)
