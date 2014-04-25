@@ -19,10 +19,24 @@
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
+import evolve_population
 
-
+my_total_population = 20
+my_mutation_parameter = 0.3
+my_cross_pollination_parameter = 0.4
+a = 0.5
+A = 1
+B = 1
+C = 1
+number_of_generations = 5
 
 def main():
+    the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C)
+    for i in range (0, number_of_generations):
+        the_Haiku_Population.update_next_generation
+    
+    # print the haikus please    
+    #the_Haiku_Population.population_list will be a list of evo objects
     return 0
 
 if __name__ == '__main__':

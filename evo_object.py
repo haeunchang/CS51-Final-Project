@@ -57,7 +57,7 @@ def populate_words (a_line_type, monograms):
 def compare(x, y):
     return(x.get_score() - y.get_score())
 
-def cross_pollinate (evo_object1, evo_object2):
+def cross_pollinate (evo_object1, evo_object2, monograms, bigrams, a, A, B, C):
     new_triple = []
     for y in range(0, 2):
         if random.randint(0,1) == 0:
@@ -65,6 +65,7 @@ def cross_pollinate (evo_object1, evo_object2):
         else:
             new_triple.append(evo_object2.get_triple[y])
     new_kid = Evo_object(new_triple[0], new_triple[1], new_triple[2])
+    new_kid.update_score(evaluate.evaluate(new_kid.triple, monograms, bigrams, a, A, B, C))
     return new_kid
     
 def mutate_line (my_line, monograms):
@@ -80,10 +81,11 @@ def mutate_line (my_line, monograms):
     
     
     
-def mutate (evo_object1, monograms):
+def mutate (evo_object1, monograms, bigrams, a, A, B, C):
     line_index_to_mutate = random.randint(0, 2)
     mutated_object = evo_object1
-    mutated_object.triple[line_index_to_mutate] = mutate_line(mutated_object.triple[line_index_to_mutate], monograms) 
+    mutated_object.triple[line_index_to_mutate] = mutate_line(mutated_object.triple[line_index_to_mutate], monograms)
+    mutated_object.update_score(evaluate.evaluate(mutated_object.triple, monograms, bigrams, a, A, B, C)) 
     return mutated_object
     
 def gen_random_evo(monograms, bigrams, line_types, a, A, B, C):
