@@ -20,7 +20,6 @@ class Evolve_population:
             new_object = evo_object.gen_random_evo()
             self.population_list.append(new_object)
         # sorts the list
-<<<<<<< HEAD
         self.population_list.sort(evo_object.compare)
             
     def update_next_generation(self)

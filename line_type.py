@@ -16,3 +16,6 @@ class Line_type:
     def update(self):
         """Increases self_occurrences based on data from haiku."""
         self.occurrences += 1
+       
+    def get_occurrences (self):
+        return self.occurrences
