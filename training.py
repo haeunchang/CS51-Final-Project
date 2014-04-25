@@ -7,7 +7,7 @@ from line_type import Line_type
 def textconversion(haikus_text):
     """Returns a list of haikus, given a large text file."""
 
-def train_haiku(haiku, monograms, bi-grams, line_types):
+def train_haiku(haiku, monograms, bigrams, line_types):
     """Takes in a new Haiku as well as three sets: one of Monogram objects, one of Bi-Gram objects,
     and one of Line_type objects. Updates the three sets, returns None."""
 
@@ -34,7 +34,7 @@ def train_haiku(haiku, monograms, bi-grams, line_types):
                     monograms[w] = new_mono
                     
                     
-        for i in range(len(words)-2)
+        for i in range(len(words)-2):
             (w_1, w_2)=(dictionary.word_filter(words[i]),
                         dictionary.word_filter(words[i+1]))
             if (dictionary.is_word(w_1) and dictionary.is_word(w_2)):
@@ -48,7 +48,7 @@ def train_haiku(haiku, monograms, bi-grams, line_types):
 
 
 
-def train (haikus, monograms, bi-grams, line_types):
+def train (haikus, monograms, bigrams, line_types):
     """Trains the input haikus, updates monograms and bigrams, yields None"""
-    train_haiku(x, monograms, bi-grams, line_types) for x in haikus
+    (train_haiku(x, monograms, bigrams, line_types) for x in haikus)
 
