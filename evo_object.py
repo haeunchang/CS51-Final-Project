@@ -1,4 +1,5 @@
 from line_haiku import Line_Haiku
+import evaluate
 import random
 
 class Evo_object:
