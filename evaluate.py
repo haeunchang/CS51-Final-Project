@@ -1,3 +1,7 @@
+"""Here is where all of the functions related to evaluating a haiku
+   are written"""
+
+
 from monogram import Monogram
 from bigram import Bi_Gram
 from line_type import Line_type
