@@ -19,7 +19,6 @@ def word_filter (word):
     else:
         return word
 
-
 def wordtype (word):
     """Returns the lexical category of a word (part of speech)."""
     raise NotImplementedError
@@ -27,7 +26,4 @@ def wordtype (word):
 def is_word (word)
     """Returns a boolean describing whether or not this word falls into
     any of the four wordtypes defined above"""
-    return (dictionary.wordtype(w)[0] != False or 
-    dictionary.wordtype(w)[1] != False or
-    dictionary.wordtype(w)[2] != False or
-    dictionary.wordtype(w)[3] != False)
+    return (True in self.wordtype(word))
