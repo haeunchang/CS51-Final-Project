@@ -5,12 +5,8 @@ class Bi_Gram:
         self.phrase = (word1, word2) # the word phrase
         self.occurrences = 0 # counts occurrences
     
-    def update(self, haiku):
+    def update(self):
         """Increases self.occurrences based on data from haiku."""
-        for line in haiku.lines:
-            words = line.split()
-            for i in range(len(words)-1):
-                if (words[i],words[i+1]) == self.phrase:
-                    self.occurrences += 1
+        self.occurrences += 1
         
 
