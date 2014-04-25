@@ -42,7 +42,13 @@ class Monogram:
                 self.adj_dict = (1, 0)
             else:
                 self.adj_dict = (0, 1)
-    def update(self,haiku):
+    def update(self,haiku, typenum):
         """Updates self.occurrences and self.adj_dict based on data from haiku."""
-        raise NotImplementedError
+        self.occurrences += 1
+        for i in range(2):
+            for x in (haiku.lines[i]).wordarray:
+                if (get_type(self) == dictionary.wordtype(x) and 
+                    dictionary.word_filter(x) != self.word):
+                    update_adj_dict(self, x, i==typenum)
+            
 

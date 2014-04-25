@@ -11,12 +11,8 @@ class Bi_Gram:
     def __hash__(self):
         return hash(self.phrase)
     
-    def update(self, haiku):
+    def update(self):
         """Increases self.occurrences based on data from haiku."""
-        for line in haiku.lines:
-            words = line.split()
-            for i in range(len(words)-1):
-                if (words[i],words[i+1]) == self.phrase:
-                    self.occurrences += 1
+        self.occurrences += 1
         
 
