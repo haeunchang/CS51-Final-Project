@@ -5,7 +5,6 @@ from curses.ascii import isdigit
 import nltk
 from nltk.corpus import cmudict
 from nltk.corpus import wordnet
-from hyphen.dictools import 
 from hyphen import Hyphenator, dict_info
 
 d = cmudict.dict() 
@@ -30,7 +29,7 @@ def wordtype (word):
     """Returns the lexical category of a word (part of speech)."""
     wntypes = wordnet.synsets(word)
     if len(wntypes) > 0:
-        t = [synset.pos() for synset in wntypes[:len(wntypes)/2+1]
+        t = [synset.pos() for synset in wntypes[:len(wntypes)/2+1]]
         types = [False, False, False, False, word]
         if 'n' in t:
             types[0] = True

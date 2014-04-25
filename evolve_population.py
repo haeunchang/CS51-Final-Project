@@ -38,7 +38,7 @@ class Evolve_population:
         pollinated_object = evo_object.cross_pollinate (base_population[x], base_population[y])
         return pollinated_object   
         
-    def update_next_generation(self)
+    def update_next_generation(self):
         mutant_pop = math.floor(self.total_population * self.mutation_parameter)
         cross_pop = math.floor(self.total_population * self.cross_pollintion_parameter)
         prev_pop = self.population_list
