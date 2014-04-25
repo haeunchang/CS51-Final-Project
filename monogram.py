@@ -28,14 +28,16 @@ class Monogram:
         """Returns the adjacency coefficient of (self.word, word2)."""
         if word2 in self.adj_dict:
             if same_line:
-                self.adj_dict = (self.adj_dict[0]+1, self.adj_dict[1])
+                self.adj_dict[word2] = (self.adj_dict[word2][0]+1,
+                                        self.adj_dict[word2][1])
             else:
-                self.adj_dict = (self.adj_dict[0], self.adj_dict[1]+1)
+                self.adj_dict[word2] = (self.adj_dict[word2][0], 
+                                        self.adj_dict[word2][1]+1)
         else:
             if same_line: 
-                self.adj_dict = (1, 0)
+                self.adj_dict[word2] = (1, 0)
             else:
-                self.adj_dict = (0, 1)
+                self.adj_dict[word2] = (0, 1)
     def update(self,haiku, typenum):
         """Updates self.occurrences and self.adj_dict based on data from haiku."""
         self.occurrences += 1
