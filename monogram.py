@@ -11,6 +11,12 @@ class Monogram:
         self.wordtype = None # lexical category, bool list if found, initialized to None
         self.occurrences = 0 # counts the number of times word has occurred in the training data
         self.adj_dict = {} # dictionary from adjacent word to adjancency coefficient
+
+    def __eq__(self, other):
+        return self.word == other.word
+
+    def __hash__(self):
+        return hash(self.word)
     
     def get_length(self):
         """Returns the syllable length"""
