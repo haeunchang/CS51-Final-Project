@@ -46,7 +46,7 @@ def wordtype (word):
 def is_word (w):
     """Returns a boolean describing whether or not this word falls into
     any of the four wordtypes defined above"""
-    return (True in dictionary.wordtype(w))
+    return (True in wordtype(word))
 
 def read_input(textfile):
     """Returns a list of Haiku objects"""
