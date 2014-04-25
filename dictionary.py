@@ -1,6 +1,6 @@
 # This module contains functions for interacting with several external databases - dictionaries
 
-import haiku
+import evo_object
 import curses
 from curses.ascii import isdigit
 import nltk
@@ -41,7 +41,7 @@ def wordtype (word):
         if 'r' in t:
             types[3] = True
         return types
-    return None
+    return [True, False, False, False, word] # for now just return it's a word
 
 def is_word (w):
     """Returns a boolean describing whether or not this word falls into
@@ -50,7 +50,7 @@ def is_word (w):
 
 def read_input(textfile):
     """Returns a list of Haiku objects"""
-    fin = open("testhaikus.txt", 'r')
+    fin = open(textfile, 'r')
 
     t = []
     for line in fin.read().split('\n'):
@@ -64,6 +64,6 @@ def read_input(textfile):
 
     haikus = []
     for i in range(len(t)/4):
-        haikus.append(haiku.Haiku(t[i*4+1],t[i*4+2],t[i*4+3],raw_lines = True))
+        haikus.append(evo_object.Evo_object(t[i*4+1],t[i*4+2],t[i*4+3],raw_lines = True))
     
     return haikus
