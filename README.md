@@ -10,7 +10,7 @@ To clone the repo:
 git clone https://github.com/haeunchang/CS51-Final-Project.git
 ```
 
-For running the code, Natural Language Toolkit (NLTK) and pyhyphen have to be installed.
+For running the code, Natural Language Toolkit (NLTK) and pyhyphen have to be installed and Python must be able to import both.
 
 NLTK 3.0 can be found here: http://www.nltk.org/
 
