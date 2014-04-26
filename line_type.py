@@ -1,6 +1,6 @@
 class Line_type:
     def __init__(self, abstract_line, typenum):
-        """Takes in an array whose elements are (word type, number of syllables)."""
+        """Takes in a tuple whose elements are (word type, number of syllables)."""
         self.typenum = typenum
         self.typearray = [a[0] for a in abstract_line]
         self.syllablearray = [a[1] for a in abstract_line]

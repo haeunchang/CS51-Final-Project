@@ -1,3 +1,5 @@
+import dictionary
+
 class Line_Haiku:
     def __init__(self, y, typenum):
         # Takes in a string array (and haiku position) and outputs 
