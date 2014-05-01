@@ -29,15 +29,21 @@ For running the code, Python 3 is recommended. Most of the code should be compat
 Guidelines for installation (with Python 3) in Mac/Unix:
 
 To install PyHyphen:
-1) Download the zip file found on pyhyphen website. 
-2) cd to the temporary directory
-3) Install PyHyphen: sudo -E python3 setup.py install
+	
+	Download the zip file found on pyhyphen website. 
 
+	cd to the temporary directory
+
+	Install PyHyphen: sudo -E python3 setup.py install
+	
 To install nltk: 
-1) Download the zip file found on nltk website for python 3
-2) cd to the temporary directory 
-3) Install nltk: sudo python3 setup.py install
+	
+	Download the zip file found on nltk website for python 3
 
+	cd to the temporary directory 
+
+	Install nltk: sudo python3 setup.py install
+	
 Running the code:
 ```
 python main.py
