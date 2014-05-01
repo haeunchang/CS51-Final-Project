@@ -6,6 +6,7 @@ from monogram import Monogram
 from bigram import Bi_Gram
 from line_type import Line_type
 from haiku import Haiku
+from collections import Counter
 
 def mono_correlation (mono1, mono2, a) = 
     A = mono1.adj_dict[mono2.word]
@@ -37,7 +38,11 @@ def bi_gram_score (line, bi_grams): # line is just a list of words here
         return 1
     else:
         return total_count * 1.0 / count_valid
-        
+
+def repetition_penalty (line): # penalizes line for repeated word, line is still just a list of words, assumed to be non-special
+    my_line_set = Counter(line)
+    return float(my_line_set.most_common(1)[0][1])/ sum (my_line_set.values)
+            
 def evaluate(lines, monograms, bi_grams, a, A, B, C):
     line_scores = [line_mono_correlation(line, a) for line in lines]
     
