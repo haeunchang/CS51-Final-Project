@@ -4,7 +4,6 @@
 from monogram import Monogram
 from bigram import Bi_Gram
 from line_type import Line_type
-from haiku import Haiku
 import dictionary
 
 def mono_correlation (mono1, mono2, a):

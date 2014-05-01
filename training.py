@@ -1,6 +1,5 @@
 from monogram import Monogram
 from bigram import Bi_Gram
-from haiku import Haiku
 from line_type import Line_type
 import evo_object
 import dictionary
