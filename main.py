@@ -36,7 +36,7 @@ bigrams = {}
 line_types = {}
 
 def main():
-    training.train(dictionary.read_input("data.txt"), monograms, bigrams, line_types)
+    training.train(dictionary.read_input("testhaikus.txt"), monograms, bigrams, line_types)
     # print ([x for x in monograms])
     the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C)
     for i in range (0, number_of_generations):
