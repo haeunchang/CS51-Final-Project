@@ -43,7 +43,7 @@ class Evo_object:
 # There is already a thing implemented in numpy, but hell
 
 def random_weighted_occurrence (list_skeleton, list_weight):
-    # assumes list1 is positive
+    # assumes list_weight is positive
     tot_sum = sum(list_weight)
     x = random.uniform(0, tot_sum)
     y = 0
@@ -112,6 +112,7 @@ def gen_random_evo(monograms, bigrams, line_types, a, A, B, C, D):
     # generates random skeleton for each type
     list_skeleton_1 = [x for x in line_types if line_types[x].typenum == 1]
     list_weight_1 = [line_types[x].occurrences for x in list_skeleton_1]
+    print (list_weight_1)
     random_line_type_1 = line_types[random_weighted_occurrence(list_skeleton_1, list_weight_1)]
     my_line_1 = populate_words (random_line_type_1, monograms)
     

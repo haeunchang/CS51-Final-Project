@@ -18,6 +18,7 @@ class Evolve_population:
     A = 0
     B = 0
     C = 0
+    D = 0
     
     # initializes population
     def __init__(self, my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C, D):
@@ -31,10 +32,11 @@ class Evolve_population:
         self.A = A
         self.B = B
         self.C = C
+        self.D = D
         
         for x in range (0, my_total_population):
             # Creates new object
-            new_object = evo_object.gen_random_evo(self.monograms, self.bigrams, self.line_types, self.a, self.A, self.B, self.C)
+            new_object = evo_object.gen_random_evo(self.monograms, self.bigrams, self.line_types, self.a, self.A, self.B, self.C, self.D)
             self.population_list.append(new_object)
         # sorts the list
         self.population_list.sort()

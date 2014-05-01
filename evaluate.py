@@ -62,7 +62,7 @@ def evaluate(lines, monograms, bigrams, a, A, B, C, D):
     
     bigram_score = bi_gram_score(lines[0].wordarray, bigrams) + bi_gram_score(lines[1].wordarray, bigrams) + bi_gram_score(lines[2].wordarray, bigrams)
     
-    penalty = repetition_penalty (lines[0]) + repetition_penalty(lines[1])
+    penalty = (repetition_penalty (lines[0]) + repetition_penalty(lines[1])
               + repetition_penalty(lines[2]))
 
     return (A*(line_scores[0]+line_scores[1]+line_scores[2]) +
