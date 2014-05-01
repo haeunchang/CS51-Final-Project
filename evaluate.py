@@ -54,7 +54,7 @@ def repetition_penalty (line): # penalizes line for repeated word, line is still
     return float(my_line_set.most_common(1)[0][1])/ sum (my_line_set.values)
             
         
-def evaluate(lines, monograms, bigrams, a, A, B, C):
+def evaluate(lines, monograms, bigrams, a, A, B, C, D):
     line_scores = [line_mono_correlation(line.wordarray, a, monograms) for line in lines]
     
     long_line = lines[0].wordarray+lines[1].wordarray+lines[2].wordarray
@@ -62,5 +62,8 @@ def evaluate(lines, monograms, bigrams, a, A, B, C):
     
     bigram_score = bi_gram_score(lines[0].wordarray, bigrams) + bi_gram_score(lines[1].wordarray, bigrams) + bi_gram_score(lines[2].wordarray, bigrams)
     
+    penalty = (repetition_penalty (lines[0]) + repetition_penalty(lines[1])
+              + repetition_penalty(lines[2]))
+
     return (A*(line_scores[0]+line_scores[1]+line_scores[2]) +
-            B* threeline_score + C * bigram_score)
+            B* threeline_score + C * bigram_score + D * repetition_penalty)

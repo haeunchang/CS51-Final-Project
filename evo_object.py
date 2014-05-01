@@ -43,7 +43,7 @@ class Evo_object:
 # There is already a thing implemented in numpy, but hell
 
 def random_weighted_occurrence (list_skeleton, list_weight):
-    # assumes list1 is positive
+    # assumes list_weight is positive
     tot_sum = sum(list_weight)
     x = random.uniform(0, tot_sum)
     y = 0
@@ -70,7 +70,7 @@ def populate_words (a_line_type, monograms):
 def compare(x, y):
     return(x.get_score() - y.get_score())
 
-def cross_pollinate (evo_object1, evo_object2, monograms, bigrams, a, A, B, C):
+def cross_pollinate (evo_object1, evo_object2, monograms, bigrams, a, A, B, C, D):
     new_triple = []
     for y in range(0, 2):
         if random.randint(0,1) == 0:
@@ -78,7 +78,7 @@ def cross_pollinate (evo_object1, evo_object2, monograms, bigrams, a, A, B, C):
         else:
             new_triple.append(evo_object2.get_triple[y])
     new_kid = Evo_object(new_triple[0], new_triple[1], new_triple[2])
-    new_kid.update_score(evaluate.evaluate(new_kid.triple, monograms, bigrams, a, A, B, C))
+    new_kid.update_score(evaluate.evaluate(new_kid.triple, monograms, bigrams, a, A, B, C, D))
     return new_kid
     
 def mutate_line (my_linehaiku, monograms):
@@ -101,17 +101,18 @@ def mutate_line (my_linehaiku, monograms):
     
     
     
-def mutate (evo_object1, monograms, bigrams, a, A, B, C):
+def mutate (evo_object1, monograms, bigrams, a, A, B, C, D):
     line_index_to_mutate = random.randint(0, 2)
     mutated_object = evo_object1
     mutated_object.triple[line_index_to_mutate] = mutate_line(mutated_object.triple[line_index_to_mutate], monograms)
-    mutated_object.update_score(evaluate.evaluate(mutated_object.triple, monograms, bigrams, a, A, B, C)) 
+    mutated_object.update_score(evaluate.evaluate(mutated_object.triple, monograms, bigrams, a, A, B, C, D)) 
     return mutated_object
     
-def gen_random_evo(monograms, bigrams, line_types, a, A, B, C):
+def gen_random_evo(monograms, bigrams, line_types, a, A, B, C, D):
     # generates random skeleton for each type
     list_skeleton_1 = [x for x in line_types if line_types[x].typenum == 1]
     list_weight_1 = [line_types[x].occurrences for x in list_skeleton_1]
+    print (list_weight_1)
     random_line_type_1 = line_types[random_weighted_occurrence(list_skeleton_1, list_weight_1)]
     my_line_1 = populate_words (random_line_type_1, monograms)
     
@@ -126,7 +127,7 @@ def gen_random_evo(monograms, bigrams, line_types, a, A, B, C):
     my_line_3 = populate_words (random_line_type_3, monograms)
     
     my_random_haiku = Evo_object(my_line_1, my_line_2, my_line_3)
-    my_random_haiku.update_score(evaluate.evaluate([my_line_1, my_line_2, my_line_3], monograms, bigrams, a, A, B, C))
+    my_random_haiku.update_score(evaluate.evaluate([my_line_1, my_line_2, my_line_3], monograms, bigrams, a, A, B, C, D))
     
     print ([l.wordarray for l in my_random_haiku.triple])
     return my_random_haiku  
