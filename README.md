@@ -1,4 +1,4 @@
-CS51 Final Project
+CS51 Final Project: Evolutionary Haiku Generator
 ===========
 
 Installation
@@ -6,7 +6,45 @@ Installation
 
 To clone the repo:
 
+```
 git clone https://github.com/haeunchang/CS51-Final-Project.git
+```
+
+For running the code, Natural Language Toolkit (NLTK) and pyhyphen have to be installed and Python must be able to import both.
+
+NLTK 3.0 can be found here: http://www.nltk.org/
+
+pyhyphen can be found here: https://code.google.com/p/pyhyphen/
+
+Guidelines for installation in Arch Linux:
+
+NLTK can be found as community/python-nltk package
+```
+sudo pacman -S python-nltk
+```
+pyhyphen can be found from AUR: python-pyhyphen package
+
+For running the code, Python 3 is recommended. Most of the code should be compatible with both Python 2 and Python 3, but because of unicode issues Python 2 may not be able to run the code out-of-the-box and additional tweaking may be necessary.
+
+Guidelines for installation (with Python 3) in Mac/Unix:
+
+To install PyHyphen:
+1) Download the zip file found on pyhyphen website. 
+2) cd to the temporary directory
+3) Install PyHyphen: sudo -E python3 setup.py install
+
+To install nltk: 
+1) Download the zip file found on nltk website for python 3
+2) cd to the temporary directory 
+3) Install nltk: sudo python3 setup.py install
+
+Running the code:
+```
+python main.py
+```
+Changing the input file: edit main.py `read_input` argument
+
+Such way of having to modify source code should be a temporary solution.
 
 
 Organization

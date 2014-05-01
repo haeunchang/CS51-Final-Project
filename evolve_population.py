@@ -5,21 +5,6 @@ import math
 
 # HELPER FUNCTIONS
 
-# as of now, uniformly chooses elements to mutate
-def create_mutants (base_population):
-    x = random.randint(0, len(base_population)- 1)
-    to_be_mutated = base_population[x]
-    mutated_object = evo_object.mutate(to_be_mutated, self.monograms, self.bigrams, self.a, self.A, self.B, self.C)
-    return mutated_object
-
-# similarly, uniformly chooses elements to cross_pollinate
-# Note that if it chooses the same one, it will effectively replicate the said object, which is not bad
-def create_cross_pollinated (base_population):
-    x = random.randint(0, len(base_population) - 1)
-    y = random.randint(0, len(base_population) - 1)
-    pollinated_object = evo_object.cross_pollinate (base_population[x], base_population[y], self.monograms, self.bigrams, self.a, self.A, self.B, self.C)
-    return pollinated_object   
-
 class Evolve_population:
 
     population_list = []
@@ -52,22 +37,36 @@ class Evolve_population:
             new_object = evo_object.gen_random_evo(self.monograms, self.bigrams, self.line_types, self.a, self.A, self.B, self.C)
             self.population_list.append(new_object)
         # sorts the list
-        self.population_list.sort(evo_object.compare)
+        self.population_list.sort()
             
-    def update_next_generation(self)
+    # as of now, uniformly chooses elements to mutate
+    def create_mutants (self,base_population):
+        x = random.randint(0, len(base_population)- 1)
+        to_be_mutated = base_population[x]
+        mutated_object = evo_object.mutate(to_be_mutated, self.monograms, self.bigrams, self.a, self.A, self.B, self.C)
+        return mutated_object
+
+    # similarly, uniformly chooses elements to cross_pollinate
+    # Note that if it chooses the same one, it will effectively replicate the said object, which is not bad
+    def create_cross_pollinated (self,base_population):
+        x = random.randint(0, len(base_population) - 1)
+        y = random.randint(0, len(base_population) - 1)
+        pollinated_object = evo_object.cross_pollinate (base_population[x], base_population[y], self.monograms, self.bigrams, self.a, self.A, self.B, self.C)
+        return pollinated_object   
+
+    def update_next_generation(self):
         mutant_pop = int(self.total_population * self.mutation_parameter)
-        cross_pop = int(self.total_population * self.cross_pollintion_parameter)
+        cross_pop = int(self.total_population * self.cross_pollination_parameter)
         prev_pop = self.population_list
         # Creates random pollination/mutation      
         for x in range (0, mutant_pop):
-            new_mutant = create_mutants(prev_pop)
+            new_mutant = self.create_mutants(prev_pop)
             self.population_list.append (new_mutant)
         for x in range (0, cross_pop):
-            new_cross = create_cross_pollinated(prev_pop)
+            new_cross = self.create_cross_pollinated(prev_pop)
             self.population_list.append (new_cross)    
         # sorts it
-        self.population.sort(evo_object.compare)
+        self.population_list.sort()
         # cuts off the least successful ones
-        self.population_list = self.population_list [0: total_population]
-       
+        self.population_list = self.population_list [:self.total_population]
 

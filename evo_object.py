@@ -3,17 +3,29 @@ import evaluate
 import random
 import training
 import line_type
+import dictionary
 
 class Evo_object:
-	def __init__(self, line1, line2, line3, raw_lines = False):
-        if raw_line:
-            line1 = Line_Haiku(line1, 1)
-            line2 = Line_Haiku(line2, 2)
-            line3 = Line_Haiku(line3, 3)
-            
-		self.triple = [line1, line2, line3]
+    def __init__(self, line1, line2, line3, raw_lines = False):
+        l1, l2, l3 = None, None, None
+        if raw_lines:
+            l1 = Line_Haiku(line1, 1)
+            l2 = Line_Haiku(line2, 2)
+            l3 = Line_Haiku(line3, 3)
+        else:
+            l1, l2, l3 = line1, line2, line3
+        self.triple = [l1, l2, l3]
         self.score = 0
-    	    
+
+    def __lt__(self,other):
+        return self.score > other.score
+
+    def __gt__(self,other):
+        return other < self
+
+    def __str__(self):
+        return ' / '.join([' '.join(line.wordarray) for line in self.triple])
+
     def get_score (self):
         return self.score
 
@@ -34,7 +46,7 @@ def random_weighted_occurrence (list_skeleton, list_weight):
     # assumes list1 is positive
     tot_sum = sum(list_weight)
     x = random.uniform(0, tot_sum)
-    y = 0    
+    y = 0
     while (True):
         if x < list_weight[y]:
             return list_skeleton[y]
@@ -47,12 +59,13 @@ def populate_words (a_line_type, monograms):
     my_line = []
     for i in range(len(my_skeleton)):
         if my_skeleton[i][0][4] =="" :
-            word_list = [x for x in monograms if (monograms[x].wordtype == my_skeleton[i][0]) & (monograms[x].syllables == my_skeleton[i][1]]
-            word_weight = [word_list[x].occurrences for x in word_list]
+            word_list = [x for x in monograms if ((monograms[x].wordtype == my_skeleton[i][0]) and (monograms[x].syllables == my_skeleton[i][1]))]
+            word_weight = [monograms[x].occurrences for x in word_list]
             # randomly generates a fitting monogram
             my_line.append(random_weighted_occurrence (word_list, word_weight))
         else:
             my_line.append (my_skeleton[i][0][4])
+    return Line_Haiku(my_line, a_line_type.typenum)
                 	
 def compare(x, y):
     return(x.get_score() - y.get_score())
@@ -68,16 +81,23 @@ def cross_pollinate (evo_object1, evo_object2, monograms, bigrams, a, A, B, C):
     new_kid.update_score(evaluate.evaluate(new_kid.triple, monograms, bigrams, a, A, B, C))
     return new_kid
     
-def mutate_line (my_line, monograms):
+def mutate_line (my_linehaiku, monograms):
+    my_line = my_linehaiku.wordarray
     new_line = my_line
     k = random.randint(0,len(my_line)-1)
-    while not(dictionary.is_word(my_line[k])):
+    found_a_word = False
+    for i in range(1000):
+        if (dictionary.is_word(my_line[k])):
+            found_a_word = True
+            break
         k = random.randint(0, len(my_line)-1)
-    word_list = [x for x in monograms if (x.wordtype == monograms[my_line[k]].wordtype) & (x.syllables == monograms[my_line[k]].syllables)]
-    word_weight = [word_list[x].occurrences for x in word_list]
+    if not found_a_word:
+        return my_linehaiku # just give up
+    word_list = [x for x in monograms if (monograms[x].wordtype == monograms[my_line[k]].wordtype) & (monograms[x].syllables == monograms[my_line[k]].syllables)]
+    word_weight = [monograms[x].occurrences for x in word_list]
     generated_word = random_weighted_occurrence (word_list, word_weight)
     new_line[k] = generated_word
-    return new_line
+    return Line_Haiku(new_line, my_linehaiku.typenum)
     
     
     
@@ -92,21 +112,21 @@ def gen_random_evo(monograms, bigrams, line_types, a, A, B, C):
     # generates random skeleton for each type
     list_skeleton_1 = [x for x in line_types if line_types[x].typenum == 1]
     list_weight_1 = [line_types[x].occurrences for x in list_skeleton_1]
-    random_line_type_1 = random_weighted_occurrence(list_skeleton_1, list_weight_1)
+    random_line_type_1 = line_types[random_weighted_occurrence(list_skeleton_1, list_weight_1)]
     my_line_1 = populate_words (random_line_type_1, monograms)
     
     list_skeleton_2 = [x for x in line_types if line_types[x].typenum == 2]
     list_weight_2 = [line_types[x].occurrences for x in list_skeleton_2]
-    random_line_type_2 = random_weighted_occurrence(list_skeleton_2, list_weight_2)
+    random_line_type_2 = line_types[random_weighted_occurrence(list_skeleton_2, list_weight_2)]
     my_line_2 = populate_words (random_line_type_2, monograms)
     
     list_skeleton_3 = [x for x in line_types if line_types[x].typenum == 3]
     list_weight_3 = [line_types[x].occurrences for x in list_skeleton_3]
-    random_line_type_3 = random_weighted_occurrence(list_skeleton_3, list_weight_3)
+    random_line_type_3 = line_types[random_weighted_occurrence(list_skeleton_3, list_weight_3)]
     my_line_3 = populate_words (random_line_type_3, monograms)
     
-    my_random_haiku = Evo_object([my_line_1, my_line_2, my_line_3)
-    my_random_haiku.update_score(evaluate.evaluate([my_line_1, my_line_2, my_line_3], monograms, bigrams, a, A, B, C)
+    my_random_haiku = Evo_object(my_line_1, my_line_2, my_line_3)
+    my_random_haiku.update_score(evaluate.evaluate([my_line_1, my_line_2, my_line_3], monograms, bigrams, a, A, B, C))
     
     return my_random_haiku  
 

@@ -24,13 +24,13 @@ def syllablecnt (word):
         counts = [len(list(y for y in x if isdigit(y[-1]))) for x in d[word.lower()]]
         if len(counts) > 0:
             return counts[0]
-    return h.syllables(word)
+    return len(h.syllables(word+' '))
 
 def wordtype (word):
     """Returns the lexical category of a word (part of speech)."""
     wntypes = wordnet.synsets(word)
     if len(wntypes) > 0:
-        t = [synset.pos() for synset in wntypes[:len(wntypes)/2+1]]
+        t = [synset.pos() for synset in wntypes[:int(round(len(wntypes)/2))+1]]
         types = [False, False, False, False, word]
         if 'n' in t:
             types[0] = True
@@ -40,30 +40,35 @@ def wordtype (word):
             types[2] = True
         if 'r' in t:
             types[3] = True
-        return types
-    return [True, False, False, False, word] # for now just return it's a word
+        if True in types:
+            types[4] = ""
+        return tuple(types)
+    return (False, False, False, False, word) # for now just return it's special
 
-def is_word (w):
+def is_word(word):
     """Returns a boolean describing whether or not this word falls into
     any of the four wordtypes defined above"""
-    return (True in wordtype(word))
+    return (True in (wordtype(word)))
 
 def read_input(textfile):
     """Returns a list of Haiku objects"""
     fin = open(textfile, 'r')
 
     t = []
+    punctuation = ['(', ')', '?', ':', ';', ',', '.', '!', '/', '"']
     for line in fin.read().split('\n'):
         phrases = line.split()
         words = []
         for phrase in phrases:
-            (words.append(w.translate(string.maketrans("",""), string.punctuation)) for w in phrase.split('-') if w)
+            for w in phrase.split('-'):
+                if w:
+                    words.append("".join(ltr for ltr in w if ltr not in punctuation))
         t.append(words)
 
     fin.close()
 
     haikus = []
-    for i in range(len(t)/4):
+    for i in range(int(round(len(t)/4))):
         haikus.append(evo_object.Evo_object(t[i*4+1],t[i*4+2],t[i*4+3],raw_lines = True))
     
     return haikus

@@ -36,9 +36,9 @@ class Monogram:
         """Updates self.occurrences and self.adj_dict based on data from haiku."""
         self.occurrences += 1
         for i in range(2):
-            for x in (haiku.lines[i]).wordarray:
-                if (get_type(self) == dictionary.wordtype(x) and 
+            for x in (haiku.triple[i]).wordarray:
+                if (self.wordtype == dictionary.wordtype(x) and 
                     dictionary.word_filter(x) != self.word):
-                    update_adj_dict(self, x, i==typenum)
+                    self.update_adj_dict(x, i==typenum)
             
 
