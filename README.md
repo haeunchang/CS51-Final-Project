@@ -1,4 +1,4 @@
-CS51 Final Project
+CS51 Final Project: Evolutionary Haiku Generator
 ===========
 
 Installation
@@ -26,15 +26,17 @@ pyhyphen can be found from AUR: python-pyhyphen package
 
 For running the code, Python 3 is recommended. Most of the code should be compatible with both Python 2 and Python 3, but because of unicode issues Python 2 may not be able to run the code out-of-the-box and additional tweaking may be necessary.
 
-Guidelines for installation in Mac/Unix: 
+Guidelines for installation (with Python 3) in Mac/Unix:
 
-Install Setuptools: http://pypi.python.org/pypi/setuptools
-Install Pip: run sudo easy_install pip
-Install Numpy (optional): run sudo pip install -U numpy
-Install PyYAML and NLTK: run sudo pip install -U pyyaml nltk
-Test installation: run python then type import nltk
+To install PyHyphen:
+1) Download the zip file found on pyhyphen website. 
+2) cd to the temporary directory
+3) Install PyHyphen: sudo -E python3 setup.py install
 
-Instructions for installation in Windows can be found on the nltk website. 
+To install nltk: 
+1) Download the zip file found on nltk website for python 3
+2) cd to the temporary directory 
+3) Install nltk: sudo python3 setup.py install
 
 Running the code:
 ```
