@@ -34,7 +34,7 @@ To install PyHyphen:
 
 	cd to the temporary directory
 
-	Install PyHyphen: 'sudo -E python3 setup.py install'
+	Install PyHyphen: sudo -E python3 setup.py install
 	
 To install nltk: 
 	
@@ -42,7 +42,7 @@ To install nltk:
 
 	cd to the temporary directory 
 
-	Install nltk: 'sudo python3 setup.py install'
+	Install nltk: sudo python3 setup.py install
 	
 Running the code:
 ```
