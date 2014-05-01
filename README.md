@@ -26,6 +26,16 @@ pyhyphen can be found from AUR: python-pyhyphen package
 
 For running the code, Python 3 is recommended. Most of the code should be compatible with both Python 2 and Python 3, but because of unicode issues Python 2 may not be able to run the code out-of-the-box and additional tweaking may be necessary.
 
+Guidelines for installation in Mac/Unix: 
+
+Install Setuptools: http://pypi.python.org/pypi/setuptools
+Install Pip: run sudo easy_install pip
+Install Numpy (optional): run sudo pip install -U numpy
+Install PyYAML and NLTK: run sudo pip install -U pyyaml nltk
+Test installation: run python then type import nltk
+
+Instructions for installation in Windows can be found on the nltk website. 
+
 Running the code:
 ```
 python main.py
