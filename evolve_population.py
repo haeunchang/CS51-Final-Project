@@ -67,6 +67,8 @@ class Evolve_population:
             self.population_list.append (new_cross)    
         # sorts it
         self.population_list.sort()
+        # gets rid of repetition
+        
         # cuts off the least successful ones
         self.population_list = self.population_list [:self.total_population]
 

@@ -1084,7 +1084,7 @@ drinking sake in the shadows
 falling cherry blossoms
 272
 were my voice good,
-I’d chant from the No :
+I’d chant from the "No":
 falling cherry blossoms
 273
 petal after petal
@@ -2272,7 +2272,7 @@ just enough time to boil shrimp
 in the night’s darkness
 569
 harvest moon:
-though it’s a second time .
+though it’s a second time.
 this moon at Seta
 570
 rice-field sparrows
@@ -4542,6 +4542,3 @@ to the moon
 in moonlight
 going bare-chested...
 snail
-
-
-

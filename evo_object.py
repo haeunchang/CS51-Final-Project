@@ -128,6 +128,7 @@ def gen_random_evo(monograms, bigrams, line_types, a, A, B, C):
     my_random_haiku = Evo_object(my_line_1, my_line_2, my_line_3)
     my_random_haiku.update_score(evaluate.evaluate([my_line_1, my_line_2, my_line_3], monograms, bigrams, a, A, B, C))
     
+    print ([l.wordarray for l in my_random_haiku.triple])
     return my_random_haiku  
 
         
