@@ -38,17 +38,34 @@ bigrams = {}
 line_types = {}
 
 def load_train_files():
-    monograms = pickle.load( open("monograms.p", "rb"))
-    bigrams = pickle.load( open("bigrams.p", "rb"))
-    line_types = pickle.load( open("line_types.p", "rb"))
+    global monograms, bigrams, line_types
+    
+    try:
+        monograms = pickle.load( open("monograms.p", "rb"))
+    except FileNotFoundError:
+        print("Could not find monograms.p, creating new empty database.")
+    try:
+        bigrams = pickle.load( open("bigrams.p", "rb"))
+    except FileNotFoundError:
+        print("Could not find bigrams.p, creating new empty database.")
+    try:
+        line_types = pickle.load( open("line_types.p", "rb"))
+    except FileNotFoundError:
+        print("Could not find line_types.p, creating new empty database.")
 
 def train(traindatafile):
     training.train(dictionary.read_input(traindatafile), monograms, bigrams, line_types)
-    pickle.dump(monograms, open( "monograms.p", "wb"))
-    pickle.dump(bigrams, open( "bigrams.p", "wb"))
-    pickle.dump(line_types, open("line_types.p", "wb"))
+    (monograms_file, bigrams_file, linetypes_file) = (open("monograms.p", "wb"), open("bigrams.p", "wb"), open("line_types.p", "wb"))
+    pickle.dump(monograms, monograms_file)
+    pickle.dump(bigrams, bigrams_file)
+    pickle.dump(line_types, linetypes_file)
+    monograms_file.close()
+    bigrams_file.close()
+    linetypes_file.close()
 
 def generate():
+    global monograms, bigrams, line_types
+
     load_train_files()
 
     the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C)
