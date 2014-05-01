@@ -4,9 +4,6 @@ from line_type import Line_type
 import evo_object
 import dictionary
 
-def textconversion(haikus_text):
-    """Returns a list of haikus, given a large text file."""
-
 def train_haiku(haiku, monograms, bigrams, line_types):
     """Takes in a new Haiku as well as three dictionaries: one of 
     Monogram objects (keys are words), one of Bi-Gram objects (keys are
