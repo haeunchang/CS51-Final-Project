@@ -32,6 +32,7 @@ a = 0.5
 A = 1
 B = 1
 C = 1
+D = 1
 number_of_generations = 20
 monograms = {}
 bigrams = {}
@@ -51,7 +52,7 @@ def train(traindatafile):
 def generate():
     load_train_files()
 
-    the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C)
+    the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C, D)
     for i in range (0, number_of_generations):
         the_Haiku_Population.update_next_generation()
     
