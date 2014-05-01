@@ -29,9 +29,10 @@ def syllablecnt (word):
 def wordtype (word):
     """Returns the lexical category of a word (part of speech)."""
     types = [False, False, False, False, word]
-    
+    if word == "":
+        return tuple(types)
     s = nltk.pos_tag(nltk.word_tokenize(word))[0][1]
-    if s in set(["DT", "CC", "IN", "RP", "TO", "PRR"]):
+    if s in set(["DT", "CC", "IN", "RP", "TO", "PRR", "PRP", "PRP$"]):
         return tuple(types)
     wntypes = wordnet.synsets(word)
     if len(wntypes) > 0:
@@ -47,7 +48,7 @@ def wordtype (word):
         if True in types:
             types[4] = ""
         return tuple(types)
-     return (True, false, false, false, "") # words not found are nouns
+    return (True, False, False, False, "") # words not found are nouns
 
 def is_word(word):
     """Returns a boolean describing whether or not this word falls into
