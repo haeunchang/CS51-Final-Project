@@ -20,7 +20,7 @@ class Evolve_population:
     C = 0
     
     # initializes population
-    def __init__(self, my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C):
+    def __init__(self, my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C, D):
         self.mutation_parameter = my_mutation_parameter
         self.cross_pollination_paramter = my_cross_pollination_parameter
         self.total_population = my_total_population
