@@ -9,6 +9,7 @@ class Monogram:
         self.word = word # the word itself
         self.syllables = dictionary.syllablecnt(self.word) #number of syllables
         self.wordtype = dictionary.wordtype(self.word) # lexical category
+        self.is_word = (True in self.wordtype)
         self.occurrences = 0 # counts the number of times word has occurred in the training data
         self.adj_dict = {} # dictionary from adjacent word to adjancency coefficient
 
