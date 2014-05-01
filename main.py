@@ -22,8 +22,8 @@
 import evolve_population
 import training
 import dictionary
-import sys
 import pickle
+from optparse import OptionParser
 
 my_total_population = 100
 my_mutation_parameter = 0.3
@@ -37,17 +37,20 @@ monograms = {}
 bigrams = {}
 line_types = {}
 
-def train():
-    training.train(dictionary.read_input("data.txt"), monograms, bigrams, line_types)
+def load_train_files():
+    monograms = pickle.load( open("monograms.p", "rb"))
+    bigrams = pickle.load( open("bigrams.p", "rb"))
+    line_types = pickle.load( open("line_types.p", "rb"))
+
+def train(traindatafile):
+    training.train(dictionary.read_input(traindatafile), monograms, bigrams, line_types)
     pickle.dump(monograms, open( "monograms.p", "wb"))
     pickle.dump(bigrams, open( "bigrams.p", "wb"))
     pickle.dump(line_types, open("line_types.p", "wb"))
 
 def generate():
-    monograms = pickle.load( open("monograms.p", "rb"))
-    bigrams = pickle.load( open("bigrams.p", "rb"))
-    line_types = pickle.load( open("line_types.p", "rb"))
-    
+    load_train_files()
+
     the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C)
     for i in range (0, number_of_generations):
         the_Haiku_Population.update_next_generation()
@@ -57,13 +60,27 @@ def generate():
     for haiku in the_Haiku_Population.population_list:
         print (haiku)
 
-def main(argv):
-    if len(argv) > 0:
-        if argv[0] == "train":
-            train()
-        elif argv[0] == "generate":
-            generate()
+def main():
+    parser = OptionParser()
+    parser.add_option("-t", "--train", dest="training", action="store", type="string", default="",
+                      help="train using data from FILE", metavar="FILE")
+    parser.add_option("-g", "--generate", dest="generation", action="store_true", default=False,
+                      help="generate new haikus using data aquired from training")
+    parser.add_option("-f", "--fresh", dest="fresh_database", action="store_true", default=False,
+                      help="overwrite old training databases (old information WILL be lost)")
+    (options, args) = parser.parse_args()
+    if options.training:
+        if options.fresh_database:
+            delete = input("Are you sure you want to delete old databases? [y/N] ")
+            if delete.lower() != 'y':
+                return 1
+        else:
+            load_train_files()
+        train(options.training)
+    if options.generation:
+        generate()
+    
     return 0
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()
