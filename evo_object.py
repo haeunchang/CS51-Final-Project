@@ -138,22 +138,18 @@ def gen_random_evo(monograms, bigrams, line_types, a, A, B, C, D):
     my_random_haiku = Evo_object(my_line_1, my_line_2, my_line_3)
     my_random_haiku.update_score(evaluate.evaluate([my_line_1, my_line_2, my_line_3], monograms, bigrams, a, A, B, C, D))
     
-    print ([l.wordarray for l in my_random_haiku.triple])
+#    print ([l.wordarray for l in my_random_haiku.triple])
     return my_random_haiku  
 
 def gen_random_markov (digrams):
     line_counter = 0
     # generates initial word
     starting_words = [(x[1], digrams[x]) for x in digrams if x[0] == "\n"]    
-    
-    print("The starting words are:", starting_words)
-    
+        
     starting_letters = [y[0] for y in starting_words]
     starting_weights = [y[1] for y in starting_words]
     my_word= random_weighted_occurrence(starting_letters, starting_weights)
-    
-    print("EMPTY??", [x[1] for x in starting_words if x[0] == ""])
-        
+            
     net_poem = []
     net_poem.append(my_word)
     while (line_counter < 3):
