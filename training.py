@@ -41,9 +41,9 @@ def train_haiku(haiku, monograms, bigrams, digrams, line_types):
                 
                 if i == 1:
                     if ("\n", w_1) in digrams:
-                        digrams[(\n, w_1)] += 1
+                        digrams[("\n", w_1)] += 1
                     else: 
-                        digrams[(\n, w_1)] = 1
+                        digrams[("\n", w_1)] = 1
                 
                 if (w_1, w_2) in digrams:
                     digrams[(w_1, w_2)] += 1
