@@ -78,5 +78,5 @@ def read_input(textfile):
     haikus = []
     for i in range(int(round(len(t)/4))):
         haikus.append(evo_object.Evo_object(t[i*4+1],t[i*4+2],t[i*4+3],raw_lines = True))
-        print ([[y.wordarray for y in x.triple] for x in haikus])
+        #print ([[y.wordarray for y in x.triple] for x in haikus])
     return haikus

@@ -87,9 +87,11 @@ def generate():
         the_Haiku_Population.update_next_generation()
     
     # print the haikus please    
-    #the_Haiku_Population.population_list will be a list of evo objects
+    # the_Haiku_Population.population_list will be a list of evo objects
+    print("Here is the final generation of haikus:")
+    
     for haiku in the_Haiku_Population.population_list:
-        print ("the score of haiku is", haiku.get_score())
+#       print ("the score of haiku is", haiku.get_score())
         print (haiku)
 
 def markov():
@@ -101,7 +103,7 @@ def markov():
     
     markov_haiku = evo_object.gen_random_markov (digrams)
     
-    print (markov_haiku)
+    print ("Here is a Markov Haiku:", markov_haiku)
 
 
 def main():
