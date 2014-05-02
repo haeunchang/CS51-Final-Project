@@ -140,24 +140,38 @@ def gen_random_evo(monograms, bigrams, line_types, a, A, B, C, D):
     print ([l.wordarray for l in my_random_haiku.triple])
     return my_random_haiku  
 
-def gen_random_evo_markov (digrams):
+def gen_random_markov (digrams):
     line_counter = 0
     # generates initial word
-    starting_words = [(x, digrams[x]) for x in digrams if x[0] == "\n"]
+    starting_words = [(x[1], digrams[x]) for x in digrams if x[0] == "\n"]    
+    
+    print("The starting words are:", starting_words)
+    
     starting_letters = [y[0] for y in starting_words]
     starting_weights = [y[1] for y in starting_words]
     my_word= random_weighted_occurrence(starting_letters, starting_weights)
+    
+    print("EMPTY??", [x[1] for x in starting_words if x[0] == ""])
+    
+    print("My word is:", my_word)
+    
     net_poem = []
-    net_poem = net_poem.append(my_word)
+    net_poem.append(my_word)
     while (line_counter < 3):
-        potential_words = [(x, digrams[x]) for x in digrams if x[0] == my_word]
+        
+        print("The net poem is:", net_poem)
+        
+        potential_words = [(x[1], digrams[x]) for x in digrams if x[0] == my_word]
         next_letters = [y[0] for y in potential_words]
         next_weights = [y[1] for y in potential_words]
+        
+        print("The potential words are:", potential_words)
+        
         next_word= random_weighted_occurrence(next_letters, next_weights)
         if next_word == "\n":
             line_counter = line_counter + 1
             
-        net_poem = net_poem.append(next_word)
+        net_poem.append(next_word)
         my_word = next_word  
     return(net_poem)  
         
