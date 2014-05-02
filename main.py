@@ -62,8 +62,13 @@ def load_train_files():
 
 
 def train(traindatafile, no_line_types = False, no_vocabulary = False):
-    training.train(dictionary.read_input(traindatafile), monograms, bigrams, digrams, line_types)
     
+    print("Training...")
+
+    training.train(dictionary.read_input(traindatafile), monograms, bigrams, digrams, line_types)
+
+    print("Storing...")
+
     if not no_line_types:
         linetypes_file = open("line_types.p", "wb")
         pickle.dump(line_types, linetypes_file)
@@ -76,6 +81,8 @@ def train(traindatafile, no_line_types = False, no_vocabulary = False):
         monograms_file.close()
         bigrams_file.close()
         digrams_file.close()
+    
+    print("Done!")
 
 def generate():
     global monograms, bigrams, digrams, line_types
