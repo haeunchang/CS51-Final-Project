@@ -56,14 +56,14 @@ def repetition_penalty (line, monograms): # penalizes line for repeated word
     my_line_set = Counter(my_line)
     return float(my_line_set.most_common(1)[0][1]-1)/ len(my_line)
 
-def wordtype_bonus (line):
-    tagged_line = nltk.pos_tag(line)
-    tags = [nltk.pos_tag([word])[0] for word in line]
-    sum = 0
-    for i in range(len(line)):
-        if tagged_line[i][1] == tags[i][1]:
-            sum += 1
-    return sum
+#def wordtype_bonus (line):
+#    tagged_line = nltk.pos_tag(line)
+#    tags = [nltk.pos_tag([word])[0] for word in line]
+#    sum = 0
+#    for i in range(len(line)):
+#        if tagged_line[i][1] == tags[i][1]:
+#            sum += 1
+#    return sum
         
 def evaluate(lines, monograms, bigrams, a, A, B, C, D):
     line_scores = [line_mono_correlation(line.wordarray, a, monograms) for line in lines]
@@ -79,4 +79,4 @@ def evaluate(lines, monograms, bigrams, a, A, B, C, D):
     wt_bonus = wordtype_bonus(lines[0].wordarray) + wordtype_bonus(lines[1].wordarray) + wordtype_bonus(lines[2].wordarray)
 
     return (A*(line_scores[0]+line_scores[1]+line_scores[2]) +
-            B* threeline_score + C * bigram_score - D * penalty + 0.1*wt_bonus)
+            B* threeline_score + C * bigram_score - D * penalty)
