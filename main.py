@@ -112,7 +112,7 @@ def markov():
     
     markov_haiku = evo_object.gen_random_markov (digrams)
     
-    print ("Here is a Markov Haiku:", markov_haiku)
+    print ("Here is a Markov Haiku:\n"+" / ".join(line.strip() for line in " ".join(markov_haiku).split('\n') if line))
 
 
 def main():
