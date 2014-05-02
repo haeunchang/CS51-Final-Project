@@ -4,7 +4,7 @@ from line_type import Line_type
 import evo_object
 import dictionary
 
-def train_haiku(haiku, monograms, bigrams, line_types):
+def train_haiku(haiku, monograms, bigrams, digrams, line_types):
     """Takes in a new Haiku as well as three dictionaries: one of 
     Monogram objects (keys are words), one of Bi-Gram objects (keys are
     phrases), and one of Line_type objects (keys are skeletons). 
@@ -34,20 +34,32 @@ def train_haiku(haiku, monograms, bigrams, line_types):
                     monograms[w] = new_mono
                     
                     
-        for i in range(len(words)-1):
-            (w_1, w_2)=(dictionary.word_filter(words[i]),
-                        dictionary.word_filter(words[i+1]))
-            if (dictionary.is_word(w_1) and dictionary.is_word(w_2)):
-                if (w_1, w_2) in bigrams:
-                    bigrams[(w_1, w_2)].update()
+        for i in range(len(words)):
+            if i < len(words)-1:
+                (w_1, w_2)=(dictionary.word_filter(words[i]),
+                            dictionary.word_filter(words[i+1]))
+                if (w_1, w_2) in digrams:
+                    digrams[(w_1, w_2)] += 1
                 else:
-                    new_bi = Bi_Gram(w_1, w_2)
-                    new_bi.update()
-                    bigrams[(w_1, w_2)] = new_bi
+                    digrams[(w_1, w_2)] = 1
+
+                if (dictionary.is_word(w_1) and dictionary.is_word(w_2)):
+                    if (w_1, w_2) in bigrams:
+                        bigrams[(w_1, w_2)].update()
+                    else:
+                        new_bi = Bi_Gram(w_1, w_2)
+                        new_bi.update()
+                        bigrams[(w_1, w_2)] = new_bi
+            else:
+                w = dictionary.word_filter(words[i])
+                if (w, "/n") in digrams:
+                    digrams[(w, "\n")] +=1
+                else:
+                    digrams[(w, "\n")] = 1
 
 
-def train (haikus, monograms, bigrams, line_types):
+def train (haikus, monograms, bigrams, digrams, line_types):
     """Trains the input haikus, updates monograms, bi-grams, 
        and line_types (which are dictionaries), yields None"""
-    [train_haiku(x, monograms, bigrams, line_types) for x in haikus]
+    [train_haiku(x, monograms, bigrams, digrams, line_types) for x in haikus]
 
