@@ -69,4 +69,4 @@ def evaluate(lines, monograms, bigrams, a, A, B, C, D):
               + repetition_penalty(lines[2], monograms))
 
     return (A*(line_scores[0]+line_scores[1]+line_scores[2]) +
-            B* threeline_score + C * bigram_score + D * penalty)
+            B* threeline_score + C * bigram_score - D * penalty)

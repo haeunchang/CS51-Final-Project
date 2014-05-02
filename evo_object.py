@@ -4,6 +4,7 @@ import random
 import training
 import line_type
 import dictionary
+from copy import deepcopy
 
 class Evo_object:
     def __init__(self, line1, line2, line3, raw_lines = False):
@@ -81,11 +82,11 @@ def compare(x, y):
 
 def cross_pollinate (evo_object1, evo_object2, monograms, bigrams, a, A, B, C, D):
     new_triple = []
-    for y in range(0, 2):
+    for y in range(3):
         if random.randint(0,1) == 0:
-            new_triple.append(evo_object1.get_triple[y])
+            new_triple.append(evo_object1.get_triple()[y])
         else:
-            new_triple.append(evo_object2.get_triple[y])
+            new_triple.append(evo_object2.get_triple()[y])
     new_kid = Evo_object(new_triple[0], new_triple[1], new_triple[2])
     new_kid.update_score(evaluate.evaluate(new_kid.triple, monograms, bigrams, a, A, B, C, D))
     return new_kid
@@ -112,7 +113,7 @@ def mutate_line (my_linehaiku, monograms):
     
 def mutate (evo_object1, monograms, bigrams, a, A, B, C, D):
     line_index_to_mutate = random.randint(0, 2)
-    mutated_object = evo_object1
+    mutated_object = deepcopy(evo_object1)
     mutated_object.triple[line_index_to_mutate] = mutate_line(mutated_object.triple[line_index_to_mutate], monograms)
     mutated_object.update_score(evaluate.evaluate(mutated_object.triple, monograms, bigrams, a, A, B, C, D)) 
     return mutated_object

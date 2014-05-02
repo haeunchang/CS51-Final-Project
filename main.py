@@ -32,7 +32,7 @@ a = 0.5
 A = 1
 B = 1
 C = 1
-D = 1
+D = 9001
 number_of_generations = 20
 monograms = {}
 bigrams = {}
@@ -87,6 +87,7 @@ def generate():
     # print the haikus please    
     #the_Haiku_Population.population_list will be a list of evo objects
     for haiku in the_Haiku_Population.population_list:
+        print ("the score of haiku is", haiku.get_score())
         print (haiku)
 
 def main():
