@@ -54,7 +54,7 @@ def repetition_penalty (line, monograms): # penalizes line for repeated word
     if len(my_line) == 0:
         return 0
     my_line_set = Counter(my_line)
-    return float(my_line_set.most_common(1)[0][1])/ len(my_line)
+    return float(my_line_set.most_common(1)[0][1]-1)/ len(my_line)
             
         
 def evaluate(lines, monograms, bigrams, a, A, B, C, D):
