@@ -61,18 +61,21 @@ def load_train_files():
         print("Could not find line_types.p, creating new empty database.")
 
 
-def train(traindatafile):
+def train(traindatafile, no_line_types = False, no_vocabulary = False):
     training.train(dictionary.read_input(traindatafile), monograms, bigrams, digrams, line_types)
-
-    (monograms_file, bigrams_file, digrams_file, linetypes_file) = (open("monograms.p", "wb"), open("bigrams.p", "wb"), open("digrams.p", "wb"), open("line_types.p", "wb"))
-    pickle.dump(monograms, monograms_file)
-    pickle.dump(bigrams, bigrams_file)
-    pickle.dump(line_types, linetypes_file)
-    pickle.dump(digrams, digrams_file)
-    monograms_file.close()
-    bigrams_file.close()
-    digrams_file.close()
-    linetypes_file.close()
+    
+    if not no_line_types:
+        linetypes_file = open("line_types.p", "wb")
+        pickle.dump(line_types, linetypes_file)
+        linetypes_file.close()
+    if not no_vocabulary:
+        (monograms_file, bigrams_file, digrams_file) = (open("monograms.p", "wb"), open("bigrams.p", "wb"), open("digrams.p", "wb"))
+        pickle.dump(monograms, monograms_file)
+        pickle.dump(bigrams, bigrams_file)
+        pickle.dump(digrams, digrams_file)
+        monograms_file.close()
+        bigrams_file.close()
+        digrams_file.close()
 
 def generate():
     global monograms, bigrams, digrams, line_types
@@ -111,6 +114,10 @@ def main():
                       help="overwrite old training databases (old information WILL be lost)")
     parser.add_option("-m", "--markov", dest="markov", action="store_true", default = False,
                       help= "generate a haiku using a markov chain process")
+    parser.add_option("--linetypes", dest="linetypes", action="store_true", default = False,
+                      help="only use training data for training line types")
+    parser.add_option("--vocabulary", dest="vocabulary", action="store_true", default = False,
+                      help="only use training data for training vocabulary")
     (options, args) = parser.parse_args()
     if options.training:
         if options.fresh_database:
@@ -119,7 +126,12 @@ def main():
                 return 1
         else:
             load_train_files()
-        train(options.training)
+        if options.linetypes:
+            train(options.training, no_vocabulary = True)
+        elif options.vocabulary:
+            train(options.training, no_line_types = True)
+        else:
+            train(options.training)
     if options.generation:
         generate()
     
