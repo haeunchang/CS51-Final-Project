@@ -15,8 +15,9 @@ def word_filter (word):
     """Removes possessive from the end of the word for classification purposes"""
     if word.find("'s") == len(word)-2:
         return word[:len(word)-2]
-    else:
-        return word
+    if word.find("'") == len(word)-1:
+        return word[:len(word)-1]
+    return word
 
 def syllablecnt (word):
     """Returns the number of syllables in a word."""
