@@ -49,9 +49,12 @@ def bi_gram_score (line, bi_grams): # line is just a list of words here
     else:
         return total_count * 1.0 / count_valid
 
-def repetition_penalty (line): # penalizes line for repeated word, line is still just a list of words, assumed to be non-special
-    my_line_set = Counter(line)
-    return float(my_line_set.most_common(1)[0][1])/ sum (my_line_set.values)
+def repetition_penalty (line, monograms): # penalizes line for repeated word
+    my_line = [x for x in line.wordarray if x in monograms]
+    if len(my_line) == 0:
+        return 0
+    my_line_set = Counter(my_line)
+    return float(my_line_set.most_common(1)[0][1])/ len(my_line)
             
         
 def evaluate(lines, monograms, bigrams, a, A, B, C, D):
@@ -62,8 +65,8 @@ def evaluate(lines, monograms, bigrams, a, A, B, C, D):
     
     bigram_score = bi_gram_score(lines[0].wordarray, bigrams) + bi_gram_score(lines[1].wordarray, bigrams) + bi_gram_score(lines[2].wordarray, bigrams)
     
-    penalty = (repetition_penalty (lines[0]) + repetition_penalty(lines[1])
-              + repetition_penalty(lines[2]))
+    penalty = (repetition_penalty (lines[0], monograms) + repetition_penalty(lines[1], monograms)
+              + repetition_penalty(lines[2], monograms))
 
     return (A*(line_scores[0]+line_scores[1]+line_scores[2]) +
-            B* threeline_score + C * bigram_score + D * repetition_penalty)
+            B* threeline_score + C * bigram_score + D * penalty)

@@ -45,7 +45,7 @@ class Evolve_population:
     def create_mutants (self,base_population):
         x = random.randint(0, len(base_population)- 1)
         to_be_mutated = base_population[x]
-        mutated_object = evo_object.mutate(to_be_mutated, self.monograms, self.bigrams, self.a, self.A, self.B, self.C)
+        mutated_object = evo_object.mutate(to_be_mutated, self.monograms, self.bigrams, self.a, self.A, self.B, self.C, self.D)
         return mutated_object
 
     # similarly, uniformly chooses elements to cross_pollinate
@@ -53,7 +53,7 @@ class Evolve_population:
     def create_cross_pollinated (self,base_population):
         x = random.randint(0, len(base_population) - 1)
         y = random.randint(0, len(base_population) - 1)
-        pollinated_object = evo_object.cross_pollinate (base_population[x], base_population[y], self.monograms, self.bigrams, self.a, self.A, self.B, self.C)
+        pollinated_object = evo_object.cross_pollinate (base_population[x], base_population[y], self.monograms, self.bigrams, self.a, self.A, self.B, self.C, self.D)
         return pollinated_object   
 
     def update_next_generation(self):
