@@ -42,6 +42,10 @@ def train_haiku(haiku, monograms, bigrams, digrams, line_types):
                             dictionary.word_filter(words[i+1]))
                 
                 if i == 0:
+                    if w_1 == "":
+                        print("fucking hell ._.")
+                        print(words)
+                    
                     if ("\n", w_1) in digrams:
                         digrams[("\n", w_1)] += 1
                     else: 

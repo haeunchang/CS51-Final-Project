@@ -13,7 +13,7 @@ h = Hyphenator('en_US')
 
 def word_filter (word):
     """Removes possessive from the end of the word for classification purposes"""
-    if word.find("'s") == len(word)-2:
+    if word.find("'s") == len(word)-2 and len(word) != 1:
         return word[:len(word)-2]
     if word.find("'") == len(word)-1:
         return word[:len(word)-1]
@@ -72,9 +72,6 @@ def read_input(textfile):
                     words.append(new)
         if words:
             t.append(words)
-        else:
-            print("BLANK LINE NOOOOO")
-            print(line)
 
     fin.close()
 
