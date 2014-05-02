@@ -23,6 +23,7 @@ class Evolve_population:
         self.D = D
         
         self.population_list = []
+                
         for x in range (0, my_total_population):
             # Creates new object
             new_object = evo_object.gen_random_evo(self.monograms, self.bigrams, self.line_types, self.a, self.A, self.B, self.C, self.D)
@@ -72,5 +73,5 @@ class Evolve_population:
                 set_haiku = True
                 counter += 1
         self.population_list = to_live_on
-#        self.population_list = self.population_list[:self.total_population]
+#       self.population_list = self.population_list[:self.total_population]
 

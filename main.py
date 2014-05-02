@@ -83,8 +83,13 @@ def generate():
     load_train_files()
     
     the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C, D)
+    
+    print("Initializing population")
+
+    
     for i in range (0, number_of_generations):
         the_Haiku_Population.update_next_generation()
+        print("Completed generation", i+1)
     
     # print the haikus please    
     # the_Haiku_Population.population_list will be a list of evo objects
