@@ -76,7 +76,7 @@ def evaluate(lines, monograms, bigrams, a, A, B, C, D):
     penalty = repetition_penalty (lines[0].wordarray + lines[1].wordarray
                + lines[2].wordarray, monograms)
 
-    wt_bonus = wordtype_bonus(lines[0].wordarray) + wordtype_bonus(lines[1].wordarray) + wordtype_bonus(lines[2].wordarray)
+#    wt_bonus = wordtype_bonus(lines[0].wordarray) + wordtype_bonus(lines[1].wordarray) + wordtype_bonus(lines[2].wordarray)
 
     return (A*(line_scores[0]+line_scores[1]+line_scores[2]) +
             B* threeline_score + C * bigram_score - D * penalty)
