@@ -81,6 +81,10 @@ def generate():
     global monograms, bigrams, digrams, line_types
 
     load_train_files()
+
+    if (not monograms) or (not bigrams) or (not digrams) or (not line_types):
+        print("Please train with sufficient data before attempting to generate poems.")
+        return
     
     the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C, D)
     
@@ -121,8 +125,8 @@ def main():
                       help="overwrite old training databases (old information WILL be lost)")
     parser.add_option("-m", "--markov", dest="markov", action="store_true", default = False,
                       help= "generate a haiku using a markov chain process")
-    parser.add_option("--linetypes", dest="linetypes", action="store_true", default = False,
-                      help="only use training data for training line types")
+#    parser.add_option("--linetypes", dest="linetypes", action="store_true", default = False,
+#                      help="only use training data for training line types")
     parser.add_option("--vocabulary", dest="vocabulary", action="store_true", default = False,
                       help="only use training data for training vocabulary")
     (options, args) = parser.parse_args()
@@ -133,9 +137,9 @@ def main():
                 return 1
         else:
             load_train_files()
-        if options.linetypes:
-            train(options.training, no_vocabulary = True)
-        elif options.vocabulary:
+#        if options.linetypes:
+#            train(options.training, no_vocabulary = True)
+        if options.vocabulary:
             train(options.training, no_line_types = True)
         else:
             train(options.training)

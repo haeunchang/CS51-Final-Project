@@ -71,6 +71,12 @@ def populate_words (a_line_type, monograms):
         if my_skeleton[i][0][4] =="" :
             word_list = [x for x in monograms if ((monograms[x].wordtype == my_skeleton[i][0]) and (monograms[x].syllables == my_skeleton[i][1]))]
             word_weight = [monograms[x].occurrences for x in word_list]
+
+            # if the word list is empty, blame insufficient training data
+            if not word_list:
+                print("The training data is not sufficient for populating the line types with words. Maybe you used -f too liberally?")
+                exit()
+
             # randomly generates a fitting monogram
             my_line.append(random_weighted_occurrence (word_list, word_weight))
         else:
@@ -124,16 +130,22 @@ def gen_random_evo(monograms, bigrams, line_types, a, A, B, C, D):
     list_weight_1 = [line_types[x].occurrences for x in list_skeleton_1]
     random_line_type_1 = line_types[random_weighted_occurrence(list_skeleton_1, list_weight_1)]
     my_line_1 = populate_words (random_line_type_1, monograms)
+    if my_line_1 == None: # failure when populating with words
+        return None
     
     list_skeleton_2 = [x for x in line_types if line_types[x].typenum == 2]
     list_weight_2 = [line_types[x].occurrences for x in list_skeleton_2]
     random_line_type_2 = line_types[random_weighted_occurrence(list_skeleton_2, list_weight_2)]
     my_line_2 = populate_words (random_line_type_2, monograms)
+    if my_line_2 == None: # failure when populating with words
+        return None
     
     list_skeleton_3 = [x for x in line_types if line_types[x].typenum == 3]
     list_weight_3 = [line_types[x].occurrences for x in list_skeleton_3]
     random_line_type_3 = line_types[random_weighted_occurrence(list_skeleton_3, list_weight_3)]
     my_line_3 = populate_words (random_line_type_3, monograms)
+    if my_line_3 == None: # failur when populating with words
+        return None
     
     my_random_haiku = Evo_object(my_line_1, my_line_2, my_line_3)
     my_random_haiku.update_score(evaluate.evaluate([my_line_1, my_line_2, my_line_3], monograms, bigrams, a, A, B, C, D))
