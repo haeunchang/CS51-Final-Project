@@ -33,13 +33,15 @@ def train_haiku(haiku, monograms, bigrams, digrams, line_types):
                     new_mono.update(haiku, line.typenum)
                     monograms[w] = new_mono
                     
-                    
+        if len(words) == 0:
+            print("fucking hell")
+            exit            
         for i in range(len(words)):
             if i < len(words)-1:
                 (w_1, w_2)=(dictionary.word_filter(words[i]),
                             dictionary.word_filter(words[i+1]))
                 
-                if i == 1:
+                if i == 0:
                     if ("\n", w_1) in digrams:
                         digrams[("\n", w_1)] += 1
                     else: 

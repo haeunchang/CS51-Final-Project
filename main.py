@@ -63,7 +63,7 @@ def load_train_files():
 
 def train(traindatafile):
     training.train(dictionary.read_input(traindatafile), monograms, bigrams, digrams, line_types)
-    print(digrams)
+
     (monograms_file, bigrams_file, digrams_file, linetypes_file) = (open("monograms.p", "wb"), open("bigrams.p", "wb"), open("digrams.p", "wb"), open("line_types.p", "wb"))
     pickle.dump(monograms, monograms_file)
     pickle.dump(bigrams, bigrams_file)

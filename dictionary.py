@@ -67,14 +67,19 @@ def read_input(textfile):
         words = []
         for phrase in phrases:
             for w in phrase.split('-'):
-                if w:
-                    words.append("".join(ltr for ltr in w if ltr not in punctuation))
-        t.append(words)
+                new = "".join(ltr for ltr in w if ltr not in punctuation)
+                if new:
+                    words.append(new)
+        if words:
+            t.append(words)
+        else:
+            print("BLANK LINE NOOOOO")
+            print(line)
 
     fin.close()
 
     haikus = []
     for i in range(int(round(len(t)/4))):
         haikus.append(evo_object.Evo_object(t[i*4+1],t[i*4+2],t[i*4+3],raw_lines = True))
-    
+        print ([[y.wordarray for y in x.triple] for x in haikus])
     return haikus
