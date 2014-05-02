@@ -18,10 +18,19 @@ class Evo_object:
         self.score = 0
 
     def __lt__(self,other):
-        return self.score > other.score
+        if self.score > other.score:
+            return True
+        elif self.score < other.score:
+            return False
+        elif self.triple < other.triple:
+            return True
+        return False
 
     def __gt__(self,other):
         return other < self
+
+    def __eq__(self,other):
+        return (not (self < other)) and (not (other < self))
 
     def __str__(self):
         return ' / '.join([' '.join(line.wordarray) for line in self.triple])

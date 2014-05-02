@@ -69,8 +69,17 @@ class Evolve_population:
             self.population_list.append (new_cross)    
         # sorts it
         self.population_list.sort()
-        # gets rid of repetition
-        
-        # cuts off the least successful ones
-        self.population_list = self.population_list [:self.total_population]
+        # gets rid of repetition and cuts off the least successful ones
+#        to_live_on = []
+#        last_haiku = None
+#        counter = 0
+#        for haiku in self.population_list:
+#            if counter >= self.total_population:
+#                break
+#            if last_haiku != None and haiku != last_haiku:
+#                to_live_on.append(haiku)
+#                last_haiku = haiku
+#                counter += 1
+#        self.population_list = to_live_on
+        self.population_list = self.population_list[:self.total_population]
 

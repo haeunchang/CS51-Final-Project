@@ -51,9 +51,14 @@ def load_train_files():
     except FileNotFoundError:
         print("Could not find bigrams.p, creating new empty database.")
     try:
+        digrams = pickle.load( open("digrams.p", "rb"))
+    except FileNotFoundError:
+        print("Could not find digrams.p, creating new empty database.")
+    try:
         line_types = pickle.load( open("line_types.p", "rb"))
     except FileNotFoundError:
         print("Could not find line_types.p, creating new empty database.")
+
 
 def train(traindatafile):
     training.train(dictionary.read_input(traindatafile), monograms, bigrams, digrams, line_types)

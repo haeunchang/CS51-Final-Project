@@ -38,6 +38,13 @@ def train_haiku(haiku, monograms, bigrams, digrams, line_types):
             if i < len(words)-1:
                 (w_1, w_2)=(dictionary.word_filter(words[i]),
                             dictionary.word_filter(words[i+1]))
+                
+                if i == 1:
+                    if ("\n", w_1) in digrams:
+                        digrams[("\n", w_1)] += 1
+                    else: 
+                        digrams[("\n", w_1)] = 1
+                
                 if (w_1, w_2) in digrams:
                     digrams[(w_1, w_2)] += 1
                 else:
