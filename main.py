@@ -26,21 +26,25 @@ import dictionary
 import pickle
 from optparse import OptionParser
 
+# parameters for evolution
 my_total_population = 100
 my_mutation_parameter = 0.3
 my_cross_pollination_parameter = 0.4
+number_of_generations = 20
+# parameters for evaluation
 a = 0.5
 A = 1
 B = 1
 C = 1
 D = 4
-number_of_generations = 20
+# global variables for storing training data
 monograms = {}
 bigrams = {}
 digrams = {}
 line_types = {}
 
 def load_train_files():
+    """Loads training data from saved files if they exist."""
     global monograms, bigrams, digrams, line_types
     
     try:
@@ -61,20 +65,25 @@ def load_train_files():
         print("Could not find line_types.p, creating new empty database.")
 
 
-def train(traindatafile, no_line_types = False, no_vocabulary = False):
-    
+def train(traindatafile, no_line_types = False):
+    """Takes in file with training data, uses that for training purposes."""
+
     print("Training...")
 
-    training.train(dictionary.read_input(traindatafile), monograms, bigrams, digrams, line_types)
+    # the actual training happens here
+    training.train(dictionary.read_input(traindatafile),
+                   monograms, bigrams, digrams, line_types)
 
     print("Storing...")
 
+    # stores data to pickle files
     if not no_line_types:
         linetypes_file = open("line_types.p", "wb")
         pickle.dump(line_types, linetypes_file)
         linetypes_file.close()
     if not no_vocabulary:
-        (monograms_file, bigrams_file, digrams_file) = (open("monograms.p", "wb"), open("bigrams.p", "wb"), open("digrams.p", "wb"))
+        (monograms_file, bigrams_file, digrams_file) = (open("monograms.p", "wb"),
+            open("bigrams.p", "wb"), open("digrams.p", "wb"))
         pickle.dump(monograms, monograms_file)
         pickle.dump(bigrams, bigrams_file)
         pickle.dump(digrams, digrams_file)
@@ -85,44 +94,49 @@ def train(traindatafile, no_line_types = False, no_vocabulary = False):
     print("Done!")
 
 def generate():
+    """Generates new evolutionary haikus based on training data from files."""
     global monograms, bigrams, digrams, line_types
 
     load_train_files()
 
+    # determines if all the training data dictionaries are nonempty
     if (not monograms) or (not bigrams) or (not digrams) or (not line_types):
-        print("Please train with sufficient data before attempting to generate poems.")
+        print("Please train with sufficient data before generating poems.")
         return
     
-    the_Haiku_Population = evolve_population.Evolve_population(my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C, D)
+    # generates new random poems
+    the_Haiku_Population = evolve_population.Evolve_population(my_total_population,
+                           my_mutation_parameter, my_cross_pollination_parameter,
+                           monograms, bigrams, line_types, a, A, B, C, D)
     
     print("Initializing population")
-
     
+    # produces a new generation of poems based on old ones
     for i in range (0, number_of_generations):
         the_Haiku_Population.update_next_generation()
         print("Completed generation", i+1)
     
-    # print the haikus please    
-    # the_Haiku_Population.population_list will be a list of evo objects
     print("Here is the final generation of haikus:")
-    
+   
+    # outputs final results 
     for haiku in the_Haiku_Population.population_list:
-#       print ("the score of haiku is", haiku.get_score())
         print (haiku)
 
 def markov():
+    """Generates a poem based on Markov chain approach."""
     global monograms, bigrams, digrams, line_types
 
     load_train_files()
-    
-    #print(digrams)
-    
+   
     markov_haiku = evo_object.gen_random_markov (digrams)
-    
-    print ("Here is a Markov Haiku:\n"+" / ".join(line.strip() for line in " ".join(markov_haiku).split('\n') if line))
-
+   
+    # outputs result 
+    print ("Here is a Markov Haiku:\n"+
+           " / ".join(line.strip() for line in
+                      " ".join(markov_haiku).split('\n') if line))
 
 def main():
+    # parses command line options
     parser = OptionParser()
     parser.add_option("-t", "--train", dest="training", action="store", type="string", default="",
                       help="train using data from FILE", metavar="FILE")
@@ -132,11 +146,11 @@ def main():
                       help="overwrite old training databases (old information WILL be lost)")
     parser.add_option("-m", "--markov", dest="markov", action="store_true", default = False,
                       help= "generate a haiku using a markov chain process")
-#    parser.add_option("--linetypes", dest="linetypes", action="store_true", default = False,
-#                      help="only use training data for training line types")
     parser.add_option("--vocabulary", dest="vocabulary", action="store_true", default = False,
                       help="only use training data for training vocabulary")
     (options, args) = parser.parse_args()
+    
+    # trains using the file specified
     if options.training:
         if options.fresh_database:
             delete = input("Are you sure you want to delete old databases? [y/N] ")
@@ -144,15 +158,16 @@ def main():
                 return 1
         else:
             load_train_files()
-#        if options.linetypes:
-#            train(options.training, no_vocabulary = True)
         if options.vocabulary:
             train(options.training, no_line_types = True)
         else:
             train(options.training)
+    
+    # generates evolutionary approach haikus
     if options.generation:
         generate()
     
+    # generates markov chain haikus
     if options.markov:
         markov()
     
