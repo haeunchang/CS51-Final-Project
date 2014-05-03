@@ -97,12 +97,12 @@ To install nltk:
 
 To download NLTK data:
 
-        In python shell:
-        ```
-        >>> import nltk
-        >>> nltk.download()
-        Downloader> d all
-        ```
+In python shell:
+```
+>>> import nltk
+>>> nltk.download()
+Downloader> d all
+```
 	
 Running the code
 ----------------
