@@ -123,9 +123,9 @@ Options:
 
 Example usage:
 ```
-python3 main.py -t data.txt
-python3 main.py -g
-python3 main.py -m
+python3 main.py -t data.txt # train using data.txt
+python3 main.py -g # generate poems using evolutionary approach
+python3 main.py -m # generate poems using markov approach
 ```
 
 Organization
