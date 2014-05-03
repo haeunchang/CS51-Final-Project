@@ -71,7 +71,7 @@ pyhyphen can be found from AUR: python-pyhyphen package
 
 NLTK also needs to download necessary data, for that
 ```
-python3
+python
 >>> import nltk
 >>> nltk.download()
 Downloader> d all
