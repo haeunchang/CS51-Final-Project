@@ -81,15 +81,15 @@ def train(traindatafile, no_line_types = False):
         linetypes_file = open("line_types.p", "wb")
         pickle.dump(line_types, linetypes_file)
         linetypes_file.close()
-    if not no_vocabulary:
-        (monograms_file, bigrams_file, digrams_file) = (open("monograms.p", "wb"),
-            open("bigrams.p", "wb"), open("digrams.p", "wb"))
-        pickle.dump(monograms, monograms_file)
-        pickle.dump(bigrams, bigrams_file)
-        pickle.dump(digrams, digrams_file)
-        monograms_file.close()
-        bigrams_file.close()
-        digrams_file.close()
+
+    (monograms_file, bigrams_file, digrams_file) = (open("monograms.p", "wb"),
+        open("bigrams.p", "wb"), open("digrams.p", "wb"))
+    pickle.dump(monograms, monograms_file)
+    pickle.dump(bigrams, bigrams_file)
+    pickle.dump(digrams, digrams_file)
+    monograms_file.close()
+    bigrams_file.close()
+    digrams_file.close()
     
     print("Done!")
 

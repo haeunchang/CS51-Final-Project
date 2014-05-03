@@ -9,7 +9,9 @@ from copy import deepcopy
 class Evolve_population:
 
     # initializes population
-    def __init__(self, my_total_population, my_mutation_parameter, my_cross_pollination_parameter, monograms, bigrams, line_types, a, A, B, C, D):
+    def __init__(self, my_total_population, my_mutation_parameter, 
+                 my_cross_pollination_parameter, monograms, bigrams,
+                 line_types, a, A, B, C, D):
         self.mutation_parameter = my_mutation_parameter
         self.cross_pollination_parameter = my_cross_pollination_parameter
         self.total_population = my_total_population
@@ -26,7 +28,8 @@ class Evolve_population:
                 
         for x in range (0, my_total_population):
             # Creates new object
-            new_object = evo_object.gen_random_evo(self.monograms, self.bigrams, self.line_types, self.a, self.A, self.B, self.C, self.D)
+            new_object = evo_object.gen_random_evo(self.monograms, self.bigrams,
+                        self.line_types, self.a, self.A, self.B, self.C, self.D)
             self.population_list.append(new_object)
         # sorts the list
         self.population_list.sort()
@@ -35,7 +38,8 @@ class Evolve_population:
     def create_mutants (self,base_population):
         x = random.randint(0, len(base_population)- 1)
         to_be_mutated = base_population[x]
-        mutated_object = evo_object.mutate(to_be_mutated, self.monograms, self.bigrams, self.a, self.A, self.B, self.C, self.D)
+        mutated_object = evo_object.mutate(to_be_mutated, self.monograms,
+                    self.bigrams, self.a, self.A, self.B, self.C, self.D)
         return mutated_object
 
     # similarly, uniformly chooses elements to cross_pollinate
@@ -43,7 +47,9 @@ class Evolve_population:
     def create_cross_pollinated (self,base_population):
         x = random.randint(0, len(base_population) - 1)
         y = random.randint(0, len(base_population) - 1)
-        pollinated_object = evo_object.cross_pollinate (base_population[x], base_population[y], self.monograms, self.bigrams, self.a, self.A, self.B, self.C, self.D)
+        pollinated_object = evo_object.cross_pollinate (base_population[x], 
+                            base_population[y], self.monograms, self.bigrams,
+                            self.a, self.A, self.B, self.C, self.D)
         return pollinated_object
 
     def update_next_generation(self):

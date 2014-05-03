@@ -1,4 +1,5 @@
-# This module contains functions for interacting with several external databases - dictionaries
+# This module contains functions for interacting with several external databases
+# and/or dictionaries
 
 import evo_object
 import curses
@@ -22,7 +23,8 @@ def word_filter (word):
 def syllablecnt (word):
     """Returns the number of syllables in a word."""
     if word.lower() in d:
-        counts = [len(list(y for y in x if isdigit(y[-1]))) for x in d[word.lower()]]
+        counts = [len(list(y for y in x if isdigit(y[-1]))) 
+                  for x in d[word.lower()]]
         if len(counts) > 0:
             return counts[0]
     return len(h.syllables(word+' '))
@@ -77,6 +79,7 @@ def read_input(textfile):
 
     haikus = []
     for i in range(int(round(len(t)/4))):
-        haikus.append(evo_object.Evo_object(t[i*4+1],t[i*4+2],t[i*4+3],raw_lines = True))
+        haikus.append(evo_object.Evo_object(t[i*4+1],t[i*4+2],t[i*4+3],
+                      raw_lines = True))
         #print ([[y.wordarray for y in x.triple] for x in haikus])
     return haikus

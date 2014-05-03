@@ -18,8 +18,9 @@ def mono_correlation (mono1, mono2, a):
         B = mono2.adj_dict[mono1.word][0] + a * mono2.adj_dict[mono1.word][1]
     return (A+B)/( (mono1.occurrences * mono2.occurrences)** .5)
 
-# computes the total correlation of all pairs of monograms in a line (NOT line_haiku)
-def line_mono_correlation (line, a, monograms): # line is just a list of words here
+# computes the total correlation of all pairs of monograms in a line 
+# (NOT a line_haiku)
+def line_mono_correlation (line, a, monograms): # line is a list of words
     total = 0
     word_count = 0
     for i in range(len(line)):
@@ -34,7 +35,7 @@ def line_mono_correlation (line, a, monograms): # line is just a list of words h
         return 0
     return total/(word_count * (word_count-1))
 
-# computes the bi-gram score of a line (simply averaging occurrences of all bi-grams)
+# computes the bi-gram score of a line (averaging occurrences of all bi-grams)
 def bi_gram_score (line, bi_grams): # line is still just a list of words
     total = 0
     for x in bi_grams:
@@ -70,17 +71,22 @@ def repetition_penalty (line, monograms): # penalizes line for repeated word
 
 # returns a score for a triple of lines - will be used for evolution.
 def evaluate(lines, monograms, bigrams, a, A, B, C, D):
-    line_scores = [line_mono_correlation(line.wordarray, a, monograms) for line in lines]
+    line_scores = [line_mono_correlation(line.wordarray, a, monograms)
+                   for line in lines]
     
     long_line = lines[0].wordarray+lines[1].wordarray+lines[2].wordarray
     threeline_score = line_mono_correlation(long_line, a, monograms)
     
-    bigram_score = bi_gram_score(lines[0].wordarray, bigrams) + bi_gram_score(lines[1].wordarray, bigrams) + bi_gram_score(lines[2].wordarray, bigrams)
+    bigram_score = (bi_gram_score(lines[0].wordarray, bigrams) +
+                    bi_gram_score(lines[1].wordarray, bigrams) + 
+                    bi_gram_score(lines[2].wordarray, bigrams) )
     
     penalty = repetition_penalty (lines[0].wordarray + lines[1].wordarray
                + lines[2].wordarray, monograms)
 
-#    wt_bonus = wordtype_bonus(lines[0].wordarray) + wordtype_bonus(lines[1].wordarray) + wordtype_bonus(lines[2].wordarray)
+#    wt_bonus = (wordtype_bonus(lines[0].wordarray) + 
+#                wordtype_bonus(lines[1].wordarray) + 
+#                wordtype_bonus(lines[2].wordarray) )
 
     return (A*(line_scores[0]+line_scores[1]+line_scores[2]) +
             B* threeline_score + C * bigram_score - D * penalty)

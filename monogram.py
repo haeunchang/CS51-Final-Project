@@ -1,9 +1,10 @@
 import dictionary
 
 class Monogram:
-    """A monogram will store most of the training data that we process. This will include
-    the number of times it has occurred, its syllable count, word types, and a dictionary
-    which returns other words that have appeared in the same haiku."""
+    """A monogram will store most of the training data that we process. 
+    This will include the number of times it has occurred, its syllable count,
+    word types, and a dictionary which returns other words that have appeared
+    in the same haiku."""
     
     def __init__(self,word):
         self.word = word # the word itself
