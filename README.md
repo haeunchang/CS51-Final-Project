@@ -107,6 +107,7 @@ Downloader> d all
 Running the code
 ----------------
 
+```
 Usage: main.py [options]
 
 Options:
@@ -118,6 +119,7 @@ Options:
                         be lost)
   -m, --markov          generate a haiku using a markov chain process
   --vocabulary          only use training data for training vocabulary
+```
 
 Example usage:
 ```
