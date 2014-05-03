@@ -223,7 +223,7 @@ moonflowers white
 at night by the outhouse,
 torch in hand
 57
-“live austere and clear!”
+"live austere and clear!"
 Moongazer's recluse
 drinking song
 58
@@ -344,12 +344,12 @@ ceaselessly fluttering
 clouds of blossoms
 87
 for one who says
-“I'm weary of my children”
+"I'm weary of my children"
 there are no blossoms
 88
 cherries in bloom
 throughout the world: to them too
-“hail Amida Buddha”
+"hail Amida Buddha"
 89
 this mallet
 long ago was it a camellia?
@@ -723,7 +723,7 @@ east and west,
 the pathos is the same:
 autumn wind
 182
-harvest moon—
+harvest moon-
 wandering round the pond
 all night long
 183
@@ -767,7 +767,7 @@ you start a fire,
 I'll show you something fun:
 a great ball of snow
 193
-“moon and snow”:
+"moon and snow":
 so I've indulged myself
 to the end of the year
 194
@@ -824,7 +824,7 @@ the wild pinks blooming
 over the rocks
 207
 you who raised melons:
-“would that you were here”
+"would that you were here"
 in the evening coolness
 208
 a little crab
@@ -879,7 +879,7 @@ emaciated and yet
 somehow the chrysanthemum
 buds out
 221
-“wayfarerer”
+"wayfarerer"
 will be my name;
 first winter showers
 222
@@ -891,8 +891,8 @@ to the capital,
 half the sky left
 clouds of snow
 224
- “gaze into
-the darkness of Star Cape”:
+ "gaze into
+the darkness of Star Cape":
 is this the plovers' cry?
 225
 so cold and yet
@@ -968,7 +968,7 @@ pale purple,
 sprouts of the udo
 243
 I'd like to sleep
-borrowing the scarecrow's clothes—
+borrowing the scarecrow's clothes-
 midnight frost
 244
 on the second day
@@ -1744,11 +1744,11 @@ the temple bell sunk
 to the bottom of the sea
 437
 not just the moon:
-because of rain, even sumo¯
+because of rain, even sumo
 has been called off
 438
 the ancient name
-“Deer Antler” so lovely:
+"Deer Antler" so lovely:
 the autumn moon
 439
 loneliness
@@ -1915,7 +1915,7 @@ the whole village:
 are they all descendants
 of the blossom guards?
 480
-“it eats snakes”
+"it eats snakes"
 hearing this, how ghastly
 the call of the pheasant
 481
@@ -2652,7 +2652,7 @@ behind the willow,
 in front of the grove
 664
 in the plum's fragrance
-the single term “the past”
+the single term "the past"
 holds such pathos
 665
 Buddha's Nirvana Day 
@@ -2723,7 +2723,7 @@ for coolness
 this Hida craftsman
 has the blueprint
 682
- “the water rail calls there”
+ "the water rail calls there"
 people say, and so
 staying over at Saya
 683
@@ -2835,7 +2835,7 @@ departing autumn
 with their hands outspread,
 chestnut burs
 711
-crying “beep” 
+crying "beep" 
 the lingering sound so sad:
 night deer
 712
@@ -4173,7 +4173,7 @@ moved by music.
 132
 in the shadow of the cherry blossom
 complete strangers
-there are none…
+there are none...
 133
 A sheet of rain. 
 Only one man remains among 
@@ -4243,7 +4243,7 @@ A day of haze;
 the great room 
 is deserted and still.
 150
-“The peony was as big as this,”
+"The peony was as big as this,"
 Says the little girl
 Opening her arms.
 151
