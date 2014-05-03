@@ -12,6 +12,8 @@ def train_haiku(haiku, monograms, bigrams, digrams, line_types):
 
     for line in haiku.triple:
         words = line.wordarray
+        
+        # updates line_types
         abstract_skeleton = (tuple((tuple(dictionary.wordtype(a)),
            dictionary.syllablecnt(a)) for a in words), line.typenum)
         if abstract_skeleton in line_types:
@@ -21,7 +23,7 @@ def train_haiku(haiku, monograms, bigrams, digrams, line_types):
             abstrlin.update()
             line_types[abstrlin.skeleton] = abstrlin
 
-
+        # updates individual monograms
         for i in range(len(words)):
             w = dictionary.word_filter(words[i])
             if dictionary.is_word(w):
@@ -35,7 +37,9 @@ def train_haiku(haiku, monograms, bigrams, digrams, line_types):
                     
         #if len(words) == 0:
         #    print("empty word")
-        #    exit()         
+        #    exit()   
+        
+        #updates bigrams and digrams      
         for i in range(len(words)):
             if i < len(words)-1:
                 (w_1, w_2)=(dictionary.word_filter(words[i]),

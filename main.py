@@ -36,7 +36,7 @@ a = 0.5
 A = 1
 B = 1
 C = 1
-D = 2
+D = 4
 # global variables for storing training data
 monograms = {}
 bigrams = {}

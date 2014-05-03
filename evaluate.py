@@ -7,7 +7,8 @@ from line_type import Line_type
 from collections import Counter
 import dictionary
 
-
+# computes the correlation coefficient of two monograms using 
+# same-line occurrence count and same-haiku occurrence count
 def mono_correlation (mono1, mono2, a):
     A=0
     if mono2.word in mono1.adj_dict:
@@ -17,6 +18,7 @@ def mono_correlation (mono1, mono2, a):
         B = mono2.adj_dict[mono1.word][0] + a * mono2.adj_dict[mono1.word][1]
     return (A+B)/( (mono1.occurrences * mono2.occurrences)** .5)
 
+# computes the total correlation of all pairs of monograms in a line (NOT line_haiku)
 def line_mono_correlation (line, a, monograms): # line is just a list of words here
     total = 0
     word_count = 0
@@ -29,10 +31,11 @@ def line_mono_correlation (line, a, monograms): # line is just a list of words h
                 continue
             total += mono_correlation(monograms[line[i]],monograms[line[j]], a)
     if word_count <= 1:
-        return 0 # TODO: THINK ABOUT IT
+        return 0
     return total/(word_count * (word_count-1))
 
-def bi_gram_score (line, bi_grams): # line is just a list of words here
+# computes the bi-gram score of a line (simply averaging occurrences of all bi-grams)
+def bi_gram_score (line, bi_grams): # line is still just a list of words
     total = 0
     for x in bi_grams:
         total += bi_grams[x].occurrences
@@ -64,7 +67,8 @@ def repetition_penalty (line, monograms): # penalizes line for repeated word
 #        if tagged_line[i][1] == tags[i][1]:
 #            sum += 1
 #    return sum
-        
+
+# returns a score for a triple of lines - will be used for evolution.
 def evaluate(lines, monograms, bigrams, a, A, B, C, D):
     line_scores = [line_mono_correlation(line.wordarray, a, monograms) for line in lines]
     
